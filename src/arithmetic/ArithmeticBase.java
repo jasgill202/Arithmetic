@@ -5,6 +5,7 @@
  */
 package arithmetic;
 
+import arithmetic.Operations.Ops;
 import java.util.Scanner;
 
 /** This class takes String input plus,minus,divide and times
@@ -19,21 +20,34 @@ public class ArithmeticBase
     double calculate(double x, double y) 
         {
         Scanner sc =new Scanner(System.in);
-        System.out.println("Enter arithmetic operation to Perform: ");
+        System.out.println("Enter arithmetic operation to Perform (PLUS, MINUS, TIMES, DIVIDE: ");
         String s= sc.next();
-        switch (s.toUpperCase()) 
+       double result=0.0;
+       Ops operation=null;
+       for (Ops op : Ops.values()) {
+            if (op.name().equals(s)) {
+                operation = op;
+                break;
+            }
+            switch (operation) 
         {
             case "PLUS":
-                return x + y;
+                result= x + y;
+                break;
             case "MINUS":
-                return x - y;
+                result=x - y;
+            break;
             case "TIMES":
-                return x * y;
+                result= x * y;
+            break;
             case "DIVIDE":
-                return x / y;
+                result= x / y;
+            break;
             default:
                 throw new AssertionError("Unknown operations " + this);
         }
-    }
+    
+       }
+     return result;
    
-}
+        }
